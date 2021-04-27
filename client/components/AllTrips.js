@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Accordion, Card, Container, Jumbotron } from "react-bootstrap";
 import { setTrips } from "../store/trips";
-import { SingleTrip, AddTrip } from "./index";
+import { SingleTrip } from "./index";
 
 class AllTrips extends React.Component {
   componentDidMount() {
@@ -33,9 +33,7 @@ class AllTrips extends React.Component {
               Add Trip
             </Accordion.Toggle>
             <Accordion.Collapse eventKey="0">
-              <Card.Body>
-                <AddTrip />
-              </Card.Body>
+              <Card.Body>{/* <AddTrip /> */}</Card.Body>
             </Accordion.Collapse>
           </Card>
         </Accordion>
