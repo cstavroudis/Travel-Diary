@@ -15,19 +15,25 @@ class AddTrip extends React.Component {
       title: "",
       countries: [],
       date: "",
-      loading: false,
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
 
+  handleSubmit(event) {
+    event.preventDefault();
+    this.props.addTrip(this.state);
+    this.setState(initalState);
+  }
+
   render() {
     return (
       <Container>
-        {/* <Form onSubmit={handleSubmit}> */}
-        <Form action="">
+        <Form action="" onSubmit={this.handleSubmit}>
           <Form.Group controlId="formBasicTitle">
             <Form.Label>Trip Title</Form.Label>
             <Form.Control
@@ -59,15 +65,15 @@ class AddTrip extends React.Component {
 
           {/* <Button size="sm" type="submit">
           {loading ? "Loading..." : "Add Trip"}
-        </Button> */}
-          <Button
+          </Button> */}
+          {/* <Button
             onClick={(event) => {
               event.preventDefault();
-              addNewTrip(trip);
+              this.addNewTrip(trip);
             }}
           >
             {this.loading ? "Loading..." : "Add Trip"}
-          </Button>
+          </Button> */}
         </Form>
       </Container>
     );

@@ -10,18 +10,18 @@ class AllTrips extends React.Component {
   }
 
   render() {
-    const trips = this.props.trips;
+    // const trips = this.props.trips;
     return (
       <Container>
         <Jumbotron>
           <h1>Calandra's Trips</h1>
         </Jumbotron>
 
-        {!trips ? (
+        {!this.props.trips ? (
           <div>Add your first trip here.</div>
         ) : (
           <div>
-            {Object.values(trips).map((trip) => {
+            {Object.values(this.props.trips).map((trip) => {
               return <SingleTrip key={trip.tripId} trip={trip} />;
             })}
           </div>
@@ -30,7 +30,7 @@ class AllTrips extends React.Component {
         <Accordion>
           <Card>
             <Accordion.Toggle as={Card.Header} eventKey="0">
-              Add Trip
+              + Add Trip
             </Accordion.Toggle>
             <Accordion.Collapse eventKey="0">
               <Card.Body>

@@ -7,11 +7,11 @@ class SingleTrip extends React.Component {
     const trip = this.props.trip;
     return (
       <Container className="all-trips-single" key={trip.tripId}>
-        <Link to={`/trips/${trip.tripId}/entries`}>
-          <h2>{trip.title}</h2>
-        </Link>
-        <h5>{trip.countries}</h5>
-        <h6>{trip.date}</h6>
+        {/* <Link to={`/trips/${trip.tripId}/entries`}> */}
+        <h2>{trip.title}</h2>
+        {/* </Link> */}
+        <h5>{Object.keys(trip.countries).join(", ")}</h5>
+        <h6>{`${trip.startDate} – ${trip.endDate}`}</h6>
       </Container>
     );
   }
