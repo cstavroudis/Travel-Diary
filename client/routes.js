@@ -9,9 +9,9 @@ import { HomePage, AllTrips, SingleTrip } from "./components";
  * COMPONENT
  */
 export default class Routes extends Component {
-  componentDidMount() {
-    this.props.loadInitialData();
-  }
+  // componentDidMount() {
+  //   this.props.loadInitialData();
+  // }
 
   render() {
     const { isLoggedIn } = this.props;
