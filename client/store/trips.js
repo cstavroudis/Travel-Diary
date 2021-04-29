@@ -15,6 +15,25 @@ const myTrips = [
     },
     startDate: "01/01/2021",
     endDate: "01/07/2021",
+    entries: [
+      {
+        id: 1,
+        title: "Day 1 - Panama City",
+        body: "Today we arrived in Panama City. It was on lockdown!!",
+      },
+      {
+        id: 2,
+        title: "Day 2 - Panama City",
+        body:
+          "Went on a tour with airport driver in the morning, then sat around with nothing to do the rest of the day.",
+      },
+      {
+        id: 3,
+        title: "Day 3 - Panama City => Bocas del Toro",
+        body:
+          "Left Panama City today finally. Went on a tiny prop plane from the '80s. Thank god we didn't crash! Bocas is on lockdown too, so we ate gross pasta with margarine",
+      },
+    ],
   },
   {
     id: 1,
@@ -24,6 +43,7 @@ const myTrips = [
     },
     startDate: "11/21/2020",
     endDate: "11/29/2020",
+    entries: [],
   },
   {
     id: 2,
@@ -33,6 +53,7 @@ const myTrips = [
     },
     startDate: "10/06/2020",
     endDate: "10/13/2020",
+    entries: [],
   },
   {
     id: 3,
@@ -42,6 +63,7 @@ const myTrips = [
     },
     startDate: "08/22/2020",
     endDate: "08/26/2020",
+    entries: [],
   },
   {
     id: 4,
@@ -55,6 +77,7 @@ const myTrips = [
     },
     startDate: "12/22/2019",
     endDate: "01/05/2020",
+    entries: [],
   },
 ];
 
@@ -85,14 +108,14 @@ export const editTrip = (editedTrip) => ({
 });
 
 const initialState = {
-  single: {},
+  entries: [],
   all: [],
 };
 
 export default function (state = initialState, action) {
   switch (action.type) {
     case SET_TRIP:
-      return { ...state, single: action.trip };
+      return { ...state, entries: action.entries };
     case SET_TRIPS:
       return { ...state, all: action.trips };
     case ADD_TRIP:

@@ -55,6 +55,7 @@ class AddTrip extends React.Component {
 
           <Form.Group controlId="formBasicCountries">
             <Form.Label>Country(s) Visited</Form.Label>
+            <Form.Text>{this.state.countries}</Form.Text>
             <Form.Control
               name="countries"
               onChange={this.handleChange}

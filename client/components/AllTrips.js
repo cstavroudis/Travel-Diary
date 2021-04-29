@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Accordion, Card, Container, Jumbotron } from "react-bootstrap";
 import { setTrips } from "../store/trips";
-import { SingleTrip, AddTrip } from "./index";
+import { AllTripsCard, AddTrip } from "./index";
 
 class AllTrips extends React.Component {
   componentDidMount() {
@@ -22,7 +22,7 @@ class AllTrips extends React.Component {
         ) : (
           <div>
             {Object.values(this.props.trips).map((trip) => {
-              return <SingleTrip key={trip.tripId} trip={trip} />;
+              return <AllTripsCard key={trip.tripId} trip={trip} />;
             })}
           </div>
         )}

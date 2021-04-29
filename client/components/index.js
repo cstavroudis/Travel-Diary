@@ -3,5 +3,5 @@ export { default as NavBar } from "./NavBar";
 // export { Login, Signup } from "./auth-form";
 export { default as HomePage } from "./HomePage";
 export { default as AllTrips } from "./AllTrips";
-export { default as SingleTrip } from "./SingleTrip";
+export { default as AllTripsCard } from "./AllTripsCard";
 export { default as AddTrip } from "./AddTrip";
