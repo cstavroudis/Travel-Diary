@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter, Route, Switch, Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
-import { HomePage, AllTrips, AllTripsCard } from "./components";
+import { HomePage, AllTrips, SingleTrip } from "./components";
 // import { me } from "./store";
 
 /**
@@ -22,7 +22,7 @@ export default class Routes extends Component {
         <Route exact path="/" component={HomePage} />
         {/* <Route path="/login" component={Login} /> */}
         <Route exact path="/trips" component={AllTrips} />
-        <Route exact path="/trips/:id" component={AllTripsCard} />
+        <Route exact path="/trips/:id" component={SingleTrip} />
 
         {isLoggedIn && (
           <Switch>

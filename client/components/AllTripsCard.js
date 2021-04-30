@@ -6,7 +6,7 @@ class AllTripsCard extends React.Component {
   render() {
     const trip = this.props.trip;
     return (
-      <Card className="all-trips-single" key={trip.tripId}>
+      <Card className="all-trips-card" key={trip.tripId}>
         <Card.Body>
           <Card.Title>
             <Link to={`/trips/${trip.tripId}/entries`}>{trip.title}</Link>
