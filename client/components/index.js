@@ -6,3 +6,4 @@ export { default as AllTrips } from "./AllTrips";
 export { default as AllTripsCard } from "./AllTripsCard";
 export { default as AddTrip } from "./AddTrip";
 export { default as SingleTrip } from "./SingleTrip";
+export { default as AddEntry } from "./AddEntry";

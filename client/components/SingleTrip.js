@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Card } from "react-bootstrap";
 import { connect } from "react-redux";
+import AddEntry from "./index";
 
 class SingleTrip extends React.Component {
   render() {
@@ -13,6 +14,7 @@ class SingleTrip extends React.Component {
             <Card.Text>{entry.body}</Card.Text>
           </Card>
         ))}
+        <AddEntry />
       </Container>
     );
   }
