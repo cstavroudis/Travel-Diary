@@ -13,8 +13,8 @@ class AddEntry extends React.Component {
     super(props);
     this.state = {
       title: "",
-      countries: [],
       date: "",
+      body: "",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -35,7 +35,7 @@ class AddEntry extends React.Component {
       <Container>
         <Form action="" onSubmit={this.handleSubmit}>
           <Form.Group controlId="formBasicTitle">
-            <Form.Label>Trip Title</Form.Label>
+            <Form.Label>Entry Title</Form.Label>
             <Form.Control
               name="title"
               onChange={this.handleChange}
@@ -44,37 +44,27 @@ class AddEntry extends React.Component {
           </Form.Group>
 
           <Form.Group controlId="formBasicDate">
-            <Form.Label>Trip Date</Form.Label>
+            <Form.Label>Date</Form.Label>
             <Form.Control
               name="date"
               onChange={this.handleChange}
               value={this.state.date}
             />
-            <Form.Text>Please enter MM/YYYY</Form.Text>
+            <Form.Text>Please enter MM/DD/YYYY</Form.Text>
           </Form.Group>
 
-          <Form.Group controlId="formBasicCountries">
-            <Form.Label>Country(s) Visited</Form.Label>
-            <Form.Text>{this.state.countries}</Form.Text>
+          <Form.Group controlId="formBasicBody">
+            <Form.Label>Body</Form.Label>
             <Form.Control
-              name="countries"
+              as="textarea"
+              rows={3}
+              name="body"
               onChange={this.handleChange}
-              value={this.state.countries}
+              value={this.state.body}
             />
-            <Form.Text>Please separate by commas.</Form.Text>
           </Form.Group>
 
-          {/* <Button size="sm" type="submit">
-          {loading ? "Loading..." : "Add Trip"}
-          </Button> */}
-          {/* <Button
-            onClick={(event) => {
-              event.preventDefault();
-              this.addNewTrip(trip);
-            }}
-          >
-            {this.loading ? "Loading..." : "Add Trip"}
-          </Button> */}
+          <Button type="submit">Add Entry</Button>
         </Form>
       </Container>
     );

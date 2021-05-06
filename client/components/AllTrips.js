@@ -22,7 +22,7 @@ class AllTrips extends React.Component {
         ) : (
           <div>
             {Object.values(this.props.trips).map((trip) => {
-              return <AllTripsCard key={trip.tripId} trip={trip} />;
+              return <AllTripsCard key={trip.id} trip={trip} />;
             })}
           </div>
         )}

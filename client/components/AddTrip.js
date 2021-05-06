@@ -64,9 +64,7 @@ class AddTrip extends React.Component {
             <Form.Text>Please separate by commas.</Form.Text>
           </Form.Group>
 
-          {/* <Button size="sm" type="submit">
-          {loading ? "Loading..." : "Add Trip"}
-          </Button> */}
+          <Button type="submit">Add Trip</Button>
           {/* <Button
             onClick={(event) => {
               event.preventDefault();

@@ -1,3 +1,9 @@
-.all-trips-card {
+body {
+  margin-bottom: 3em;
+}
+
+/* .all-trips-card,
+.entry-card { */
+.card {
   margin-bottom: 2em;
 }

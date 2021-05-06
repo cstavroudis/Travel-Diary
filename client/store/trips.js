@@ -19,17 +19,20 @@ const myTrips = [
       {
         id: 1,
         title: "Day 1 - Panama City",
+        date: "01/01/2021",
         body: "Today we arrived in Panama City. It was on lockdown!!",
       },
       {
         id: 2,
         title: "Day 2 - Panama City",
+        date: "01/02/2021",
         body:
           "Went on a tour with airport driver in the morning, then sat around with nothing to do the rest of the day.",
       },
       {
         id: 3,
         title: "Day 3 - Panama City => Bocas del Toro",
+        date: "01/03/2021",
         body:
           "Left Panama City today finally. Went on a tiny prop plane from the '80s. Thank god we didn't crash! Bocas is on lockdown too, so we ate gross pasta with margarine",
       },
@@ -108,14 +111,14 @@ export const editTrip = (editedTrip) => ({
 });
 
 const initialState = {
-  entries: [],
+  single: {},
   all: [],
 };
 
 export default function (state = initialState, action) {
   switch (action.type) {
     case SET_TRIP:
-      return { ...state, entries: action.entries };
+      return { ...state, single: action.trip };
     case SET_TRIPS:
       return { ...state, all: action.trips };
     case ADD_TRIP:
