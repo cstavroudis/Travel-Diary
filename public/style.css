@@ -7,3 +7,7 @@ body {
 .card {
   margin-bottom: 2em;
 }
+
+.card-header:hover {
+  cursor: pointer;
+}

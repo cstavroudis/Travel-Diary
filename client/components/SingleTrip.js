@@ -4,6 +4,10 @@ import { connect } from "react-redux";
 import { AddEntry } from "./index";
 
 class SingleTrip extends React.Component {
+  // async componentDidMount() {
+  //   await this.props.setTrip(this.props.match.params.id);
+  // }
+
   render() {
     const { trip } = this.props;
     const entries = trip.entries || [];

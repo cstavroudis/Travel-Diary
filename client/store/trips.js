@@ -4,6 +4,7 @@ const SET_TRIPS = "SET_TRIPS";
 const ADD_TRIP = "ADD_TRIP";
 const DELETE_TRIP = "DELETE_TRIP";
 const EDIT_TRIP = "EDIT_TRIP";
+const ADD_ENTRY = "ADD_ENTRY";
 
 // temp data
 const myTrips = [
@@ -110,6 +111,12 @@ export const editTrip = (editedTrip) => ({
   editedTrip,
 });
 
+export const addEntry = (tripId, entry) => ({
+  type: ADD_ENTRY,
+  tripId,
+  entry,
+});
+
 const initialState = {
   single: {},
   all: [],
@@ -134,6 +141,20 @@ export default function (state = initialState, action) {
         all: state.all.map((trip) =>
           trip.id === action.editedTrip.id ? action.editedTrip : trip
         ),
+      };
+    case ADD_ENTRY:
+      return {
+        ...state,
+        all: state.all.map((trip) => {
+          if (trip.id === action.tripId) {
+            // push trip to entries
+          }
+          return trip;
+        }),
+        single: {
+          ...state.single,
+          entries: [...state.single.entries, action.entry],
+        },
       };
     default:
       return state;
