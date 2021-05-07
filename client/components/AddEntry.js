@@ -1,12 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Button, Container, Form } from "react-bootstrap";
-import { addTrip } from "../store/trips";
+import { addEntry } from "../store/trips";
 
 const initalState = {
   title: "",
-  countries: "",
   date: "",
+  body: "",
 };
 class AddEntry extends React.Component {
   constructor(props) {
@@ -26,7 +26,7 @@ class AddEntry extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.addTrip(this.state);
+    this.props.addEntry(this.props.tripId, this.state);
     this.setState(initalState);
   }
 
@@ -72,7 +72,7 @@ class AddEntry extends React.Component {
 }
 
 const mapDispatch = (dispatch) => ({
-  addTrip: (trip) => dispatch(addTrip(trip)),
+  addEntry: (tripId, entry) => dispatch(addEntry(tripId, entry)),
 });
 
 export default connect(null, mapDispatch)(AddEntry);

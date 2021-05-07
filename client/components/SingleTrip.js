@@ -8,6 +8,12 @@ class SingleTrip extends React.Component {
   //   await this.props.setTrip(this.props.match.params.id);
   // }
 
+  // componentDidUpdate(prev) {
+  //   if (prev.trip.entries !== this.props.trip.entries) {
+
+  //   }
+  // }
+
   render() {
     const { trip } = this.props;
     const entries = trip.entries || [];
@@ -34,11 +40,11 @@ class SingleTrip extends React.Component {
         <Accordion>
           <Card>
             <Accordion.Toggle as={Card.Header} eventKey="0">
-              + Add Trip
+              + Add Entry
             </Accordion.Toggle>
             <Accordion.Collapse eventKey="0">
               <Card.Body>
-                <AddEntry />
+                <AddEntry tripId={trip.id} />
               </Card.Body>
             </Accordion.Collapse>
           </Card>

@@ -147,14 +147,10 @@ export default function (state = initialState, action) {
         ...state,
         all: state.all.map((trip) => {
           if (trip.id === action.tripId) {
-            // push trip to entries
+            trip.entries.push(action.entry);
           }
           return trip;
         }),
-        single: {
-          ...state.single,
-          entries: [...state.single.entries, action.entry],
-        },
       };
     default:
       return state;
