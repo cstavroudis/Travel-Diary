@@ -98,9 +98,13 @@ class AddTrip extends React.Component {
 
           <Form.Group controlId="formBasicCountries">
             <Form.Label>Country(s) Visited</Form.Label>
-            {this.state.countries.map((country) => (
-              <Form.Text key={country[0]}>{country[0]}</Form.Text>
-            ))}
+            <Form.Text>
+              {this.state.countries.map((country) => (
+                <span key={country[0]} className="chip">
+                  {country[0]}
+                </span>
+              ))}
+            </Form.Text>
 
             <Form.Row>
               <Col>

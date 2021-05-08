@@ -2,12 +2,21 @@ body {
   margin-bottom: 3em;
 }
 
-/* .all-trips-card,
-.entry-card { */
 .card {
   margin-bottom: 2em;
 }
 
 .card-header:hover {
   cursor: pointer;
+}
+
+.chip {
+  display: inline-block;
+  padding: 3px 10px;
+  font-size: 14px;
+  border-radius: 25px;
+  background-color: #f1f1f1;
+  font-weight: 500;
+  margin-bottom: 0.7em;
+  margin-right: 0.7em;
 }
