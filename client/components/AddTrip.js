@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Button, Container, Form, Col } from "react-bootstrap";
 import { addTrip } from "../store/trips";
 import { Autocomplete } from "@react-google-maps/api";
-
+// import DateRangePicker from "react-bootstrap-daterangepicker";
 const initalState = {
   title: "",
   countries: [],
@@ -19,7 +19,8 @@ class AddTrip extends React.Component {
     this.state = {
       title: "",
       countries: [],
-      date: "",
+      startDate: new Date(),
+      endDate: new Date(),
       autocomplete: false,
       lat: 0,
       lng: 0,
@@ -27,6 +28,7 @@ class AddTrip extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.onDateChange = this.onDateChange.bind(this);
     this.onPlaceChanged = this.onPlaceChanged.bind(this);
     this.onLoad = this.onLoad.bind(this);
     this.autocomplete = null;
@@ -41,6 +43,11 @@ class AddTrip extends React.Component {
     event.preventDefault();
     this.props.addTrip(this.state);
     this.setState(initalState);
+  }
+
+  onDateChange(dates) {
+    const [start, end] = dates;
+    this.setState({ startDate: start, endDate: end });
   }
 
   onLoad(autocomplete) {
@@ -88,16 +95,15 @@ class AddTrip extends React.Component {
 
           <Form.Group controlId="formBasicDate">
             <Form.Label>Trip Date</Form.Label>
-            <Form.Control
-              name="date"
-              onChange={this.handleChange}
-              value={this.state.date}
-            />
-            <Form.Text>Please enter MM/YYYY</Form.Text>
+            {/* <DateRangePicker
+              initialSettings={{ startDate: "1/1/2014", endDate: "3/1/2014" }}
+            >
+              <button type="button">Click Me To Open Picker!</button>
+            </DateRangePicker> */}
           </Form.Group>
 
           <Form.Group controlId="formBasicCountries">
-            <Form.Label>Country(s) Visited</Form.Label>
+            <Form.Label>Countries Visited</Form.Label>
             <Form.Text>
               {this.state.countries.map((country) => (
                 <span key={country[0]} className="chip">

@@ -145,6 +145,10 @@ export default function (state = initialState, action) {
     case ADD_ENTRY:
       return {
         ...state,
+        single: {
+          ...state.single,
+          entries: [...state.single.entries, action.entry],
+        },
         all: state.all.map((trip) => {
           if (trip.id === action.tripId) {
             trip.entries.push(action.entry);
