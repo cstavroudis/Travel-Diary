@@ -3,24 +3,28 @@ import { connect } from "react-redux";
 import { Button, Container, Form, Col } from "react-bootstrap";
 import { addTrip } from "../store/trips";
 import { Autocomplete } from "@react-google-maps/api";
-// import DateRangePicker from "react-bootstrap-daterangepicker";
+
 const initalState = {
   title: "",
   countries: [],
-  date: "",
+  // country: "",
+  startDate: "",
+  endDate: "",
   autocomplete: false,
   lat: 0,
   lng: 0,
   address: "",
 };
+
 class AddTrip extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       title: "",
       countries: [],
-      startDate: new Date(),
-      endDate: new Date(),
+      // country: "",
+      startDate: "",
+      endDate: "",
       autocomplete: false,
       lat: 0,
       lng: 0,
@@ -28,7 +32,6 @@ class AddTrip extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.onDateChange = this.onDateChange.bind(this);
     this.onPlaceChanged = this.onPlaceChanged.bind(this);
     this.onLoad = this.onLoad.bind(this);
     this.autocomplete = null;
@@ -41,13 +44,17 @@ class AddTrip extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.addTrip(this.state);
+    const countries = {};
+    for (let [country, coords] of this.state.countries) {
+      countries[country] = coords;
+    }
+    this.props.addTrip({
+      startDate: this.state.startDate,
+      endDate: this.state.endDate,
+      title: this.state.title,
+      countries,
+    });
     this.setState(initalState);
-  }
-
-  onDateChange(dates) {
-    const [start, end] = dates;
-    this.setState({ startDate: start, endDate: end });
   }
 
   onLoad(autocomplete) {
@@ -62,14 +69,12 @@ class AddTrip extends React.Component {
         lng: place.geometry.location.lng(),
         address: place.formatted_address,
       });
-      console.log("state after place clicked:", this.state);
     } else {
       console.log("Autocomplete is not loaded yet!");
     }
   }
 
   async addCountry(event) {
-    console.log("event:", event);
     await this.setState({
       countries: [
         ...this.state.countries,
@@ -77,7 +82,6 @@ class AddTrip extends React.Component {
       ],
     });
     await this.setState({ address: "", lat: 0, lng: 0 });
-    console.log(this.state);
   }
 
   render() {
@@ -94,12 +98,24 @@ class AddTrip extends React.Component {
           </Form.Group>
 
           <Form.Group controlId="formBasicDate">
-            <Form.Label>Trip Date</Form.Label>
-            {/* <DateRangePicker
-              initialSettings={{ startDate: "1/1/2014", endDate: "3/1/2014" }}
-            >
-              <button type="button">Click Me To Open Picker!</button>
-            </DateRangePicker> */}
+            <Form.Row>
+              <Col>
+                <Form.Label>Start Date</Form.Label>
+                <Form.Control
+                  name="startDate"
+                  onChange={this.handleChange}
+                  value={this.state.startDate}
+                />
+              </Col>
+              <Col>
+                <Form.Label>End Date</Form.Label>
+                <Form.Control
+                  name="endDate"
+                  onChange={this.handleChange}
+                  value={this.state.endDate}
+                />
+              </Col>
+            </Form.Row>
           </Form.Group>
 
           <Form.Group controlId="formBasicCountries">
@@ -118,6 +134,11 @@ class AddTrip extends React.Component {
                   onLoad={this.onLoad}
                   onPlaceChanged={this.onPlaceChanged}
                 >
+                  {/* <Form.Control
+                    name="country"
+                    onChange={this.handleChange}
+                    value={this.state.country}
+                  /> */}
                   <Form.Control />
                 </Autocomplete>
               </Col>
