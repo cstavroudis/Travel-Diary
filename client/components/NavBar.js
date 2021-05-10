@@ -2,6 +2,7 @@ import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { SignIn } from "./index";
 
 export default class NavBar extends React.Component {
   render() {
@@ -22,7 +23,7 @@ export default class NavBar extends React.Component {
           <Nav.Link as={Link} to="/map">
             My Map
           </Nav.Link>
-          <button type="button">Log In</button>
+          <SignIn />
           {/* <LogOut /> */}
         </Nav>
         {/* ) : (
