@@ -6,6 +6,7 @@ import "firebase/firestore";
 let config = {
   apiKey: "AIzaSyDAPTUKk8ThJkO6o3LGJwsrrFm-x-IQqc8",
   authDomain: "travel-diaryy.firebaseapp.com",
+  databaseURL: "https://travel-diaryy.firebaseio.com",
   projectId: "travel-diaryy",
   storageBucket: "travel-diaryy.appspot.com",
   messagingSenderId: "994289962426",
