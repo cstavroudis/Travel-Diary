@@ -5,25 +5,37 @@ import firebase from "../../Firebase";
 class SignIn extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      loggedIn: false,
+    };
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick(event) {
-    console.log("clicked! w event:", event);
-    const provider = new firebase.auth.GoogleAuthProvider();
-    console.log("provider:", provider);
-    const result = firebase.auth().signInWithPopup(provider);
-    const credential = result.credential;
-    const token = credential.accessToken;
-    const user = result.user;
-    console.log(`user: ${user}, credential: ${credential}, token: ${token}`);
+  async handleClick(event) {
+    try {
+      event.preventDefault();
+      console.log("clicked! w event:", event);
+      const provider = new firebase.auth.GoogleAuthProvider();
+      const result = await firebase.auth().signInWithPopup(provider);
+      const user = result.user;
+      this.setState({ loggedIn: true });
+      console.log("user:", user);
+    } catch (error) {
+      console.log("There was an error loggin user in:", error);
+    }
   }
 
   render() {
     return (
-      <Button type="button" onClick={this.handleClick}>
-        Sign In
-      </Button>
+      <div>
+        {this.state.loggedIn ? (
+          <Button type="button">Sign Out</Button>
+        ) : (
+          <Button type="button" onClick={this.handleClick}>
+            Sign In
+          </Button>
+        )}
+      </div>
     );
   }
 }
