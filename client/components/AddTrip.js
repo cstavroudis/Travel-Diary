@@ -48,7 +48,7 @@ class AddTrip extends React.Component {
     for (let [country, coords] of this.state.countries) {
       countries[country] = coords;
     }
-    this.props.addTrip({
+    this.props.addTrip(this.props.docRef, {
       startDate: this.state.startDate,
       endDate: this.state.endDate,
       title: this.state.title,
@@ -157,8 +157,12 @@ class AddTrip extends React.Component {
   }
 }
 
-const mapDispatch = (dispatch) => ({
-  addTrip: (trip) => dispatch(addTrip(trip)),
+const mapState = (state) => ({
+  docRef: state.user.docRef,
 });
 
-export default connect(null, mapDispatch)(AddTrip);
+const mapDispatch = (dispatch) => ({
+  addTrip: (docRef, trip) => dispatch(addTrip(docRef, trip)),
+});
+
+export default connect(mapState, mapDispatch)(AddTrip);

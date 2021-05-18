@@ -1,6 +1,6 @@
-// import firebase from "../../Firebase";
+import firebase from "../../Firebase";
 
-// const db = firebase.firestore();
+const db = firebase.firestore();
 
 // ACTION TYPES
 const SET_TRIP = "SET_TRIP";
@@ -102,7 +102,7 @@ export const setTrip = (trip) => ({
 //   trips,
 // });
 
-export const addTrip = (trip) => ({
+const addTripToReducer = (trip) => ({
   type: ADD_TRIP,
   trip,
 });
@@ -130,10 +130,25 @@ export const setTrips = (docRef) => {
       const trips = await docRef.collection("trips");
       const tripsSnapshot = await trips.get();
       tripsSnapshot.forEach((trip) => {
-        dispatch(addTrip(trip.data()));
+        dispatch(addTripToReducer(trip.data()));
       });
     } catch (error) {
-      console.log("There was an error in addTripThunk:", error);
+      console.log("There was an error in setTrips thunk:", error);
+    }
+  };
+};
+
+export const addTrip = (docRef, trip) => {
+  return async (dispatch) => {
+    try {
+      // docRef = db.collection("users").doc(user.email)
+      // saved as object in user store
+
+      const tripRef = await docRef.collection("trips").doc(trip.title);
+      await tripRef.set(trip);
+      dispatch(addTripToReducer(trip));
+    } catch (error) {
+      console.log("There was an error in addTrip thunk:", error);
     }
   };
 };

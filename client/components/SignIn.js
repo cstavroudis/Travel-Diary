@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import firebase from "../../Firebase";
 import { setUser } from "../store/users";
-import { addTrip, setTrips } from "../store/trips";
+import { setTrips } from "../store/trips";
 import { connect } from "react-redux";
 
 class SignIn extends React.Component {
@@ -25,10 +25,10 @@ class SignIn extends React.Component {
         email: user.email,
         photo: user.photoURL,
       };
-      // setUser should make calls to firestore
-      this.props.setUser(userInfo);
+
       const db = firebase.firestore();
       const docRef = await db.collection("users").doc(user.email);
+
       const userDoc = await docRef.get();
 
       if (userDoc.exists) {
@@ -37,7 +37,8 @@ class SignIn extends React.Component {
         console.log("user not in db, setting user");
         await docRef.set(userInfo);
       }
-
+      userInfo.docRef = docRef;
+      this.props.setUser(userInfo);
       // redirect to trips tab
     } catch (error) {
       console.log("There was an error loggin user in:", error);
@@ -61,7 +62,6 @@ class SignIn extends React.Component {
 
 const mapDispatch = (dispatch) => ({
   setUser: (user) => dispatch(setUser(user)),
-  addTrip: (trip) => dispatch(addTrip(trip)),
   setTrips: (docRef) => dispatch(setTrips(docRef)),
 });
 
