@@ -5,9 +5,9 @@ import { setTrips } from "../store/trips";
 import { AllTripsCard, AddTrip } from "./index";
 
 class AllTrips extends React.Component {
-  componentDidMount() {
-    this.props.setTrips();
-  }
+  // componentDidMount() {
+  //   this.props.setTrips();
+  // }
 
   render() {
     // const trips = this.props.trips;

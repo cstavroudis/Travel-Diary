@@ -1,3 +1,7 @@
+// import firebase from "../../Firebase";
+
+// const db = firebase.firestore();
+
 // ACTION TYPES
 const SET_TRIP = "SET_TRIP";
 const SET_TRIPS = "SET_TRIPS";
@@ -7,12 +11,13 @@ const EDIT_TRIP = "EDIT_TRIP";
 const ADD_ENTRY = "ADD_ENTRY";
 
 // temp data
+/*
 const myTrips = [
   {
     id: 0,
     title: "Panama City & Bocas del Toro",
     countries: {
-      Mexico: [8.591203331991537, -80.23045274204661],
+      Panama: [8.591203331991537, -80.23045274204661],
     },
     startDate: "01/01/2021",
     endDate: "01/07/2021",
@@ -84,6 +89,7 @@ const myTrips = [
     entries: [],
   },
 ];
+*/
 
 // ACTION CREATORS
 export const setTrip = (trip) => ({
@@ -91,10 +97,10 @@ export const setTrip = (trip) => ({
   trip,
 });
 
-export const setTrips = () => ({
-  type: SET_TRIPS,
-  trips: myTrips,
-});
+// export const setTrips = (trips) => ({
+//   type: SET_TRIPS,
+//   trips,
+// });
 
 export const addTrip = (trip) => ({
   type: ADD_TRIP,
@@ -116,6 +122,21 @@ export const addEntry = (tripId, entry) => ({
   tripId,
   entry,
 });
+
+// THUNK CREATORS
+export const setTrips = (docRef) => {
+  return async (dispatch) => {
+    try {
+      const trips = await docRef.collection("trips");
+      const tripsSnapshot = await trips.get();
+      tripsSnapshot.forEach((trip) => {
+        dispatch(addTrip(trip.data()));
+      });
+    } catch (error) {
+      console.log("There was an error in addTripThunk:", error);
+    }
+  };
+};
 
 const initialState = {
   single: {},
